@@ -24,3 +24,32 @@ connection.query(selectQuery, (error, rows) => {
     console.log(rows);
   }
 });
+
+const insertQuery = 'INSERT INTO memory(year, month, day, entry) VALUES (?, ?, ?, ?)';
+const parameters = [2019, 3, 19, 'I was born.'];
+connection.query(insertQuery, parameters, (error, result) => {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(result);
+  }
+});
+
+function rowToMemory(row) {
+    return {
+      id: row.id,
+      year: row.year,
+      month: row.month,
+      day: row.day,
+      entry: row.entry,
+    };
+  }
+  
+  connection.query('SELECT * FROM memory', (error, rows) => {
+    if (error) {
+      console.error(error);
+    } else {
+      const memories = rows.map(rowToMemory);
+      console.log(memories);
+    }
+  });
