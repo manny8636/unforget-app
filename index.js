@@ -1,9 +1,4 @@
 const fs = require('fs');
-
-const json = fs.readFileSync('credentials.json', 'utf8');
-const credentials = JSON.parse(json);
-
-const fs = require('fs');
 const mysql = require('mysql');
 
 const json = fs.readFileSync('credentials.json', 'utf8');
